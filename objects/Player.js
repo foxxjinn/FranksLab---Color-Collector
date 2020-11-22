@@ -58,13 +58,13 @@ export default class Player {
 
         // Animation: This slowly mixes the color with colorAdded each frame until they are equal
         if (Math.floor(this.color.r) > Math.floor(this.colorAdded.r)) {
-            this.color.r -= (this.colorAdded.r * 0.02)
+            this.color.r -= (this.colorAdded.r * (this.totalColorCount * 0.02))
         }
         if (Math.floor(this.color.g) > Math.floor(this.colorAdded.g)) {
-            this.color.g -= (this.colorAdded.g * 0.02)
+            this.color.g -= (this.colorAdded.g * (this.totalColorCount * 0.02))
         }
         if (Math.floor(this.color.b) > Math.floor(this.colorAdded.b)) {
-            this.color.b -= (this.colorAdded.b * 0.02)
+            this.color.b -= (this.colorAdded.b * (this.totalColorCount * 0.02))
         }
 
         // Boundaries to make sure everything stays within 255 and 0,
