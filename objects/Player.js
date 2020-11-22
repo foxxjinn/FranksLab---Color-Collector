@@ -78,8 +78,10 @@ export default class Player {
     }
 
     draw(ctx, mouse) {
+        let height = this.totalColorCount
+        if (height > 10) height = 10
         ctx.fillStyle = `rgb(${this.color.r}, ${this.color.g}, ${this.color.b})`
-        ctx.fillRect(this.position.x - 40, this.position.y - 20, 70, 65)
+        ctx.fillRect(this.position.x - 40, this.position.y - 40, 70, 90)
         ctx.drawImage(this.sprite, this.position.x - 50, this.position.y - 60)
     }
 }

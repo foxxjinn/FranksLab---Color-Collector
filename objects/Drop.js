@@ -11,7 +11,18 @@ export default class Drop {
         this.distance
         this.sound = document.createElement('audio')
         this.sound.src = '../assets/sounds/Big-Water-Bloop-C2-fesliyanstudios-dot-com.mp3'
-        this.sound.volume = 0.05
+        this.sound.volume = 0.25
+        this.color = {
+            r: Math.random() * 255,
+            g: Math.random() * 255,
+            b: Math.random() * 255
+        }
+    }
+
+    // Reset and randomize properties
+    randomize(canvas) {
+        this.y = 0 - 100 - Math.random() * canvas.height
+        this.speed = Math.random() * 4 + 1
         this.color = {
             r: Math.random() * 255,
             g: Math.random() * 255,

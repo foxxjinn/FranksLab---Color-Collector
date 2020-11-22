@@ -22,12 +22,20 @@ export default class BackgroundDrops {
 
     update() {
         this.position.y += this.position.speed
-        this.position.rotate = (this.position.rotate + 5) % 360
+        this.position.rotate = (this.position.rotate + 5)
     }
 
     draw(ctx) {
+        ctx.save()
         ctx.fillStyle = `rgb(${this.color.r}, ${this.color.g}, ${this.color.b})`
-        ctx.rotate(this.position.rotate * Math.Pi / 180)
+        //https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API/Tutorial/Transformations
+        let tranX = this.position.x + 0.5 * this.size
+        let tranY = this.position.y + 0.5 * this.size
+        ctx.translate(tranX, tranY)
+        ctx.rotate((Math.PI / 180) * this.position.rotate)
+        ctx.translate(-tranX, -tranY)
+        ////////////////////
         ctx.fillRect(this.position.x, this.position.y, this.size, this.size)
+        ctx.restore()
     }
 }
