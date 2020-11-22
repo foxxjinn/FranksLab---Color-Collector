@@ -13,21 +13,16 @@ export default class Stage1 {
         for (let i = 0; i < 250; i++) {
             this.bgDrops.push(new BG(canvas))
         }
-        this.gameFrame = 0
         this.score = { 
             value: 0, 
             textColor: 'black', 
             font: '50px Georgia',
             smallFont: '20px Georgia'
         }
-        this.BUBBLERATE = 25 // lower number means more bubbles spawn
-        this.BG_SPAWNRATE = 2
     }
 
     // Each Element Updates and Draws itself.  Collisions and interactions checked and fulfilled here
     step(canvas, ctx, mouse) {
-
-        this.gameFrame += 1
 
         // Spawn Background Drops
         for (let bg of this.bgDrops) {
@@ -35,9 +30,6 @@ export default class Stage1 {
                 bg.position.y = 0 - bg.size
             }
         }
-
-        // This number is close to 8 bits of data.  Don't want the number to grow infinitly so cutting it off here.
-        if (this.gameFrame >= 11111100) this.gameFrame = 0 
 
         // Delete drop if offscreen.  Otherwise, draw and update
         for (let indx in this.bgDrops) {
@@ -55,7 +47,6 @@ export default class Stage1 {
             if (this.drops[i].y > canvas.height + this.drops[i].radius) {
                 this.drops[i].randomize(canvas)
                 if (this.score.value > 0) this.score.value -= 1
-                else this.score.value = 0  
             }
 
             // Check Player and Drop Collision

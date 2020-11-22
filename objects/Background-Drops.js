@@ -28,6 +28,7 @@ export default class BackgroundDrops {
     draw(ctx) {
         ctx.save()
         ctx.fillStyle = `rgb(${this.color.r}, ${this.color.g}, ${this.color.b})`
+        // Make background squares rotate in a circle
         //https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API/Tutorial/Transformations
         let tranX = this.position.x + 0.5 * this.size
         let tranY = this.position.y + 0.5 * this.size
