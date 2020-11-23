@@ -18,6 +18,10 @@ let scene = new Stage1(canvas)
 //////////////
 
 // Global Listeners
+window.addEventListener('resize', () => {
+    canvasPosition = canvas.getBoundingClientRect()
+})
+
 canvas.addEventListener('mousedown', (e)=> {
     mouse.click = true
     mouse.x = e.x - canvasPosition.left
