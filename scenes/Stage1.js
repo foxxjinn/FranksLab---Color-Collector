@@ -31,7 +31,7 @@ export default class Stage1 {
             }
         }
 
-        // Delete drop if offscreen.  Otherwise, draw and update
+        // Reset drops if offscrene.  Otherwise, draw and update
         for (let indx in this.bgDrops) {
             let drop = this.bgDrops[indx]
             if (drop.position.y > canvas.height + 50) {
