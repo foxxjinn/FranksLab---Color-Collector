@@ -15,14 +15,22 @@ export default class BackgroundDrops {
         
     }
 
-    step(ctx) {
-        this.update()
+    step(ctx, canvas) {
+        this.update(canvas)
         this.draw(ctx)
     }
 
-    update() {
+    update(canvas) {
         this.position.y += this.position.speed
         this.position.rotate = (this.position.rotate + 5)
+        
+        // For memory managment, we don't delete this object when it's offscreen
+        // but rather reset it's position to fall again from the top
+        // In browser games, memory managment is a huge issue,
+        //  as garbage collection will always cause a gap in the visual animations.
+        if (this.position.y > canvas.height + this.size) {
+            this.position.y = 0 - this.size
+        }
     }
 
     draw(ctx) {

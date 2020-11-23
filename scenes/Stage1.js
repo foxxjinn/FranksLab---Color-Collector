@@ -24,26 +24,17 @@ export default class Stage1 {
     // Each Element Updates and Draws itself.  Collisions and interactions checked and fulfilled here
     step(canvas, ctx, mouse) {
 
-        // Spawn Background Drops
-        for (let bg of this.bgDrops) {
-            if (bg.position.y > canvas.height + bg.size) {
-                bg.position.y = 0 - bg.size
-            }
-        }
-
-        // Reset drops if offscrene.  Otherwise, draw and update
         for (let indx in this.bgDrops) {
-            let drop = this.bgDrops[indx]
-            if (drop.position.y > canvas.height + 50) {
-                drop.position.y = 0 - drop.size
-            }
-            drop.step(ctx)
+            this.bgDrops[indx].step(ctx, canvas)
         }
     
         // Handle all Drops
         for (let i in this.drops) {
 
-            // Check if Drop has gone beyond the canvas, if so delete it
+        // For memory managment, we don't delete this object when it's offscreen
+        // but rather reset it's position to fall again from the top
+        // In browser games, memory managment is a huge issue,
+        //  as garbage collection will always cause a gap in the visual animations.
             if (this.drops[i].y > canvas.height + this.drops[i].radius) {
                 this.drops[i].randomize(canvas)
                 if (this.score.value > 0) this.score.value -= 1
